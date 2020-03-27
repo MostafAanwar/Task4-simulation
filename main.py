@@ -59,9 +59,9 @@ for i in range(10**6):
             serviceTime2[i]=0
         timeInSystemArray.append(completionTimeArray[i] - arrivalTimeArray[i])
 
-UTI1 = sum(serviceTime1)/max(atm1)
-UTI2 = sum(serviceTime2)/max(atm2)
-UTI3 = sum(serviceTime3)/max(atm3)
+utilization1 = sum(serviceTime1)/max(atm1)
+utilization2 = sum(serviceTime2)/max(atm2)
+utilization13 = sum(serviceTime3)/max(atm3)
 averageWait = sum(waitingTimeArray)/(10**6)
 maxWait = max(waitingTimeArray)
 
@@ -76,9 +76,9 @@ ProbofWait1M = (waitingPeopleNumber1Min/10**6)*100
 ProbofWait   = (waitingPeopleNumber/10**6)*100  
 
 
-print("atm1 utilization: ",UTI1, "\n")
-print("atm2 utilization: ",UTI2, "\n")
-print("atm3 utilization: ",UTI3, "\n")
+print("atm1 utilization: ",utilization1, "\n")
+print("atm2 utilization: ",utilization2, "\n")
+print("atm3 utilization: ",utilization13, "\n",UTI3, "\n")
 print("Average waiting time: ",averageWait,"\n")
 print("Maximum waiting time: ",maxWait,"\n")
 print("probability of waiting time: ",ProbofWait,"\n")
