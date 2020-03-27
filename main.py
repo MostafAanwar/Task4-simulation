@@ -30,8 +30,8 @@ for i in range(10**6):
         atm1.append(completionTimeArray[i])
         atm2.append(0)
         atm3.append(0)
-        ST2[i]=0
-        ST3[i]=0
+        serviceTime2[i]=0
+        serviceTime3[i]=0
     else:
         arrivalTimeArray.append(arrivalTimeArray[i-1] + interArrivalTime[i])
         startServiceTimeArray.append(max(arrivalTimeArray[i],min(atm1[i-1],atm2[i-1], atm3[i-1])))
@@ -41,22 +41,22 @@ for i in range(10**6):
             atm1.append(completionTimeArray[i])
             atm2.append(atm2[i-1])
             atm3.append(atm3[i-1])
-            ST2[i]=0
-            ST3[i]=0
+            serviceTime2[i]=0
+            serviceTime3[i]=0
         elif min(atm1[i-1],atm2[i-1], atm3[i-1])== atm2[i-1]:
             completionTimeArray.append(startServiceTimeArray[i] + serviceTime2[i])
             atm2.append(completionTimeArray[i])
             atm1.append(atm1[i-1])
             atm3.append(atm3[i-1])
-            ST1[i]=0
-            ST3[i]=0
+            serviceTime1[i]=0
+            serviceTime3[i]=0
         else:
             completionTimeArray.append(startServiceTimeArray[i] + serviceTime3[i])
             atm3.append(completionTimeArray[i])
             atm2.append(atm2[i-1])
             atm1.append(atm1[i-1])
-            ST1[i]=0
-            ST2[i]=0
+            serviceTime1[i]=0
+            serviceTime2[i]=0
         timeInSystemArray.append(completionTimeArray[i] - arrivalTimeArray[i])
 
 UTI1 = sum(serviceTime1)/max(atm1)
@@ -69,16 +69,16 @@ waitingPeopleNumber1Min = 0
 waitingPeopleNumber = 0 
 for i in range (10**6):
     if (waitingTimeArray[i] > 1):
-        Wait1M = Wait1M + 1
+        waitingPeopleNumber1Min = waitingPeopleNumber1Min + 1
     if (waitingTimeArray[i] > 0):
-        Wait = Wait + 1
-ProbofWait1M = (Wait1M/10**6)*100 
-ProbofWait   = (Wait/10**6)*100  
+        waitingPeopleNumber = waitingPeopleNumber + 1
+ProbofWait1M = (waitingPeopleNumber1Min/10**6)*100 
+ProbofWait   = (waitingPeopleNumber/10**6)*100  
 
 
-print("Utilization of ATM1: ",UTI1, "\n")
-print("Utilization of atm2: ",UTI2, "\n")
-print("Utilization of atm3: ",UTI3, "\n")
+print("atm1 utilization: ",UTI1, "\n")
+print("atm2 utilization: ",UTI2, "\n")
+print("atm3 utilization: ",UTI3, "\n")
 print("Average waiting time: ",averageWait,"\n")
 print("Maximum waiting time: ",maxWait,"\n")
 print("probability of waiting time: ",ProbofWait,"\n")
